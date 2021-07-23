@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/toy.board?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/toy?serverTimezone=UTC
     username: root
     password: 147asd!!
     driver-class-name: com.mysql.cj.jdbc.Driver
