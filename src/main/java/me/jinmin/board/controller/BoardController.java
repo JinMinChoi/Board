@@ -2,6 +2,7 @@ package me.jinmin.board.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.jinmin.board.domain.Board;
+import me.jinmin.board.domain.dto.BoardForm;
 import me.jinmin.board.repository.BoardRepository;
 import me.jinmin.board.service.BoardService;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +10,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/board")
@@ -26,37 +29,40 @@ public class BoardController {
         return "/board/list";
     }
 
+    //글 작성 get
+    @GetMapping("/new")
+    public String writeBoardForm(Model model) {
+        model.addAttribute("boardForm", new BoardForm());
+        return "board/form";
+    }
+
     //글 작성 post
     @PostMapping("/new")
-    public String writeContents(@RequestBody Board board) {
+    public String writeBoard(@ModelAttribute("boardForm") BoardForm form) {
+        Board board = Board.builder()
+                .title(form.getTitle())
+                .writer(form.getWriter())
+                .content(form.getContent())
+                .viewCnt(0)
+                .createdDate(LocalDateTime.now())
+                .updatedDate(LocalDateTime.now())
+                .build();
         boardRepository.save(board);
 
-        return "redirect:/";
+        return "redirect:/board/list";
     }
 
     //글 읽기(단 건 조회) get
-    @GetMapping("/")
-    public String getOne(@RequestParam(value = "id", defaultValue = "0") Long id, Model model) {
-        model.addAttribute("board", boardService.findById(id));
 
-        return "/board/form";
-    }
 
     //글 수정 put
-    @PutMapping("/{id}")
-    public String updateBoard(@PathVariable("id") Long id, @RequestBody Board board) {
-        Board findOne = boardService.findById(id);
 
-        findOne.changeBoard(board.getTitle(), board.getWriter(), board.getViewCnt());
-
-        return "/board/list";
-    }
 
     //글 삭제 delete
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/delete")
     public String deleteBoard(@PathVariable("id") Long id) {
         boardRepository.deleteById(id);
 
-        return "redirect:";
+        return "redirect:/board/list";
     }
 }
