@@ -47,10 +47,10 @@ public class Board {
         this.viewCnt = viewCnt;
     }
 
-    public void changeBoard(String title, String writer, int viewCnt, LocalDateTime updateDate) {
+    public void changeBoard(String title, String writer, String content, LocalDateTime time) {
         this.title = title;
         this.writer = writer;
-        this.updatedDate = updateDate;
-        this.viewCnt = viewCnt;
+        this.content = content;
+        this.updatedDate = time;
     }
 }

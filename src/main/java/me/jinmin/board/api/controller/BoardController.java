@@ -1,8 +1,8 @@
-package me.jinmin.board.controller;
+package me.jinmin.board.api.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.jinmin.board.domain.Board;
-import me.jinmin.board.domain.dto.BoardForm;
+import me.jinmin.board.api.dto.BoardForm;
 import me.jinmin.board.repository.BoardRepository;
 import me.jinmin.board.service.BoardService;
 import org.springframework.data.domain.Pageable;
@@ -54,9 +54,15 @@ public class BoardController {
 
     //글 읽기(단 건 조회) get
 
-
     //글 수정 put
+    @PutMapping("{id}")
+    public String updateBoard(@PathVariable("id") Long id, @RequestBody BoardForm form){
+        Board findBoard = boardService.findById(id).orElse(null);
 
+        findBoard.changeBoard(form.getTitle(), form.getWriter(), form.getContent(), LocalDateTime.now());
+
+        return "redirect:/board/list";
+    }
 
     //글 삭제 delete
     @DeleteMapping("/{id}/delete")

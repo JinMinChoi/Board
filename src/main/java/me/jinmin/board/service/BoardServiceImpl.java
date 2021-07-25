@@ -2,7 +2,6 @@ package me.jinmin.board.service;
 
 import lombok.RequiredArgsConstructor;
 import me.jinmin.board.domain.Board;
-import me.jinmin.board.exception.NotFoundBoardException;
 import me.jinmin.board.repository.BoardRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,19 +27,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Board findById(Long id) {
-        Optional<Board> findOne = boardRepository.findById(id);
-
-        Board board = null;
-
-        try {
-            if (findOne.isPresent()) {
-                board = findOne.get();
-            }
-        } catch (Exception e) {
-            throw new NotFoundBoardException(e.toString());
-        }
-
-        return board;
+    public Optional<Board> findById(Long id) {
+        return boardRepository.findById(id);
     }
 }
