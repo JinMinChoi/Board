@@ -1,5 +1,6 @@
 package me.jinmin.board;
 
+import me.jinmin.board.api.dto.BoardDto;
 import me.jinmin.board.domain.Board;
 import me.jinmin.board.repository.BoardRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -22,15 +23,21 @@ public class BoardApplication {
     @Bean
     public CommandLineRunner runner(BoardRepository boardRepository) throws Exception {
         return (args) -> {
-            IntStream.rangeClosed(1, 4).forEach(index ->
-                    boardRepository.save(Board.builder()
-                            .title("게시글" + index)
-                            .writer("작성자" + index)
-                            .content("내용" + index)
-                            .createdDate(LocalDateTime.now())
-                            .updatedDate(LocalDateTime.now())
-                            .viewCnt(index)
-                            .build()));
+            IntStream.rangeClosed(1, 4).forEach(index -> boardRepository.save(init(index)));
         };
+    }
+
+    private static Board init(int index){
+        BoardDto boardDto = BoardDto.builder()
+                .title("게시글" + index)
+                .writer("작성자" + index)
+                .content("내용" + index)
+                .createdDate(LocalDateTime.now())
+                .updatedDate(LocalDateTime.now())
+                .viewCnt(index)
+                .build();
+
+        Board board = new Board(boardDto);
+        return board;
     }
 }

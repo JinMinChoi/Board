@@ -9,7 +9,13 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    <form role="form" action="/board/new" th:object="${boardForm}" method="post">
+    <form role="form" th:action="@{'/board/' + ${boardDto.id}}" th:object="${boardDto}" method="post">
+        <input type="hidden" name="_method" value="put"/>
+        <input type="hidden" name="id" th:value="${boardDto.id}"/>
+        <div class="form-group">
+            <label th:for="created_Date">생성 날짜</label>
+            <input type="text" th:field="*{createdDate}" class="form-control" readonly placeholder="생성 날짜는 수정할 수 없습니다.">
+        </div>
         <div class="form-group">
             <label th:for="title">제목</label>
             <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 작성하세요.">
@@ -24,7 +30,7 @@
         </div>
 
         <br/>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">수정</button>
     </form>
     <br/>
     <div th:replace="fragments/footer :: footer" />
