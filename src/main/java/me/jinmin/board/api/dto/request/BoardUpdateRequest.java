@@ -1,14 +1,12 @@
-package me.jinmin.board.api.dto;
+package me.jinmin.board.api.dto.request;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class BoardForm {
-
+public class BoardUpdateRequest {
     private String title;
-    private String content;
     private String writer;
-
+    private String content;
 }

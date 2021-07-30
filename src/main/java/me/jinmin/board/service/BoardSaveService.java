@@ -1,7 +1,7 @@
 package me.jinmin.board.service;
 
 import lombok.RequiredArgsConstructor;
-import me.jinmin.board.api.dto.BoardDto;
+import me.jinmin.board.api.dto.request.BoardCreateRequest;
 import me.jinmin.board.domain.Board;
 import me.jinmin.board.repository.BoardRepository;
 import org.springframework.stereotype.Service;
@@ -14,8 +14,16 @@ public class BoardSaveService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public Long saveFromDto(BoardDto boardDto) {
-        Board board = new Board(boardDto);
+    public Long save(BoardCreateRequest boardCreateRequest) {
+
+        Board board = Board.builder()
+                .title(boardCreateRequest.getTitle())
+                .writer(boardCreateRequest.getWriter())
+                .content(boardCreateRequest.getContent())
+                .viewCnt(boardCreateRequest.getViewCnt())
+                .createdDate(boardCreateRequest.getCreatedDate())
+                .updatedDate(boardCreateRequest.getUpdatedDate())
+                .build();
 
         boardRepository.save(board);
 

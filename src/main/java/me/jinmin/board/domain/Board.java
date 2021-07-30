@@ -4,11 +4,10 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import me.jinmin.board.api.dto.BoardCreateRequest;
-import me.jinmin.board.api.dto.BoardDto;
 import me.jinmin.board.entity.BaseTimeEntity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -34,34 +33,22 @@ public class Board extends BaseTimeEntity {
 
 
     @Builder
-    public Board(Long id, String title, String writer, String content, int viewCnt) {
+    public Board(Long id, String title, String writer, String content, int viewCnt,
+                 LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.id = id;
         this.title = title;
         this.writer = writer;
         this.content = content;
         this.viewCnt = viewCnt;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
     }
 
-    public Board(BoardDto boardDto) {
-        this.title = boardDto.getTitle();
-        this.writer = boardDto.getWriter();
-        this.content = boardDto.getContent();
-        this.viewCnt = boardDto.getViewCnt();
-        this.createdDate = boardDto.getCreatedDate();
-        this.updatedDate = boardDto.getUpdatedDate();
-    }
-
-    public Board(BoardCreateRequest boardUpdateRequest) {
-        this.title = boardUpdateRequest.getTitle();
-        this.writer = boardUpdateRequest.getWriter();
-        this.content = boardUpdateRequest.getContent();
-    }
-
-    public void update(BoardDto boardDto) {
-        this.title = boardDto.getTitle();
-        this.writer = boardDto.getWriter();
-        this.content = boardDto.getContent();
-        this.viewCnt = boardDto.getViewCnt();
-        this.updatedDate = boardDto.getUpdatedDate();
+    public void update(String title, String writer, String content) {
+        this.title = title;
+        this.writer = writer;
+        this.content = content;
+        this.viewCnt += 1;
+        this.updatedDate = LocalDateTime.now();
     }
 }
