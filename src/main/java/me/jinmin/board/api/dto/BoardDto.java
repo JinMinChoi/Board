@@ -3,6 +3,7 @@ package me.jinmin.board.api.dto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import me.jinmin.board.domain.Board;
 
 import java.time.LocalDateTime;
 
@@ -27,5 +28,15 @@ public class BoardDto {
         this.viewCnt = viewCnt;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
+    }
+
+    public BoardDto(Board board) {
+        this.id = board.getId();
+        this.title = board.getTitle();
+        this.writer = board.getWriter();
+        this.content = board.getContent();
+        this.viewCnt = board.getViewCnt();
+        this.createdDate = board.getCreatedDate();
+        this.updatedDate = board.getUpdatedDate();
     }
 }

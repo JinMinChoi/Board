@@ -14,7 +14,7 @@ public class BoardSaveService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public Long save(BoardCreateRequest boardCreateRequest) {
+    public void save(BoardCreateRequest boardCreateRequest) {
 
         Board board = Board.builder()
                 .title(boardCreateRequest.getTitle())
@@ -27,6 +27,6 @@ public class BoardSaveService {
 
         boardRepository.save(board);
 
-        return board.getId();
+        //return board.getId();
     }
 }

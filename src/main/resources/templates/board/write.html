@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    <form role="form" action="/board/new" th:object="${boardDto}" method="post">
+    <form role="form" action="/board/write" th:object="${boardDto}" method="post">
         <div class="form-group">
             <label th:for="created_Date">생성 날짜</label>
             <input type="text" th:field="*{createdDate}" class="form-control" readonly placeholder="생성 날짜는 기입할 수 없습니다.">

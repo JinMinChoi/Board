@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import java.time.LocalDateTime;
 import java.util.stream.IntStream;
 
-@EnableJpaAuditing(modifyOnCreate = false)
+@EnableJpaAuditing
 @SpringBootApplication
 public class BoardApplication {
 

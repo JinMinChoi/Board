@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import me.jinmin.board.entity.BaseTimeEntity;
+import me.jinmin.board.api.dto.BoardDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -42,6 +42,17 @@ public class Board extends BaseTimeEntity {
         this.viewCnt = viewCnt;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
+    }
+
+    //초기값을 위한 생성자 후에 지워도 될듯?
+    @Builder
+    public Board(BoardDto boardDto) {
+        this.title = boardDto.getTitle();
+        this.writer = boardDto.getWriter();
+        this.content = boardDto.getContent();
+        this.viewCnt = boardDto.getViewCnt();
+        this.createdDate = boardDto.getCreatedDate();
+        this.updatedDate = boardDto.getUpdatedDate();
     }
 
     public void update(String title, String writer, String content) {

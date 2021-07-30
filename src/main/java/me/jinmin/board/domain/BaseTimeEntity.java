@@ -1,4 +1,4 @@
-package me.jinmin.board.entity;
+package me.jinmin.board.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
