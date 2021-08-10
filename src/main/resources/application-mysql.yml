@@ -5,7 +5,7 @@ spring:
     password: 147asd!!
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
-      initialization-fail-timeout: 0
+      initialization-fail-timeout: 1
 
   jpa:
     hibernate:
@@ -15,3 +15,4 @@ spring:
         #show_sql: true
         format_sql: true
     database-platform: org.hibernate.dialect.MySQL5Dialect
+    open-in-view: false

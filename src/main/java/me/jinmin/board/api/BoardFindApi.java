@@ -24,8 +24,9 @@ public class BoardFindApi {
     @GetMapping("/list")
     public String findAll(Model model){
         List<Board> all = boardFindService.findAll();
+        List<BoardDto> boardDtoList = toBoardDtoList(all);
 
-        model.addAttribute("boardList", toBoardDtoList(all));
+        model.addAttribute("boardList", boardDtoList);
 
         return "board/list";
     }

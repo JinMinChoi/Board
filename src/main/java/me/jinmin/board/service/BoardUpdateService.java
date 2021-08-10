@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class BoardUpdateService {
 
     private final BoardFindService boardFindService;
-    private final BoardRepository boardRepository;
 
     @Transactional
     public Long update(Long id, BoardUpdateRequest boardUpdateRequest) {
