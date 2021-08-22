@@ -14,11 +14,8 @@ public class BoardDeleteService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public Long delete(Long id) {
+    public void delete(Long id) {
         Board board = boardFindService.findById(id);
-
         boardRepository.deleteById(board.getId());
-
-        return board.getId();
     }
 }
