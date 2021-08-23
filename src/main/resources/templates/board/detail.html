@@ -9,13 +9,9 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    <form role="form" th:action="@{'/board/' + ${boardDto.id}}" th:object="${boardDto}" method="post">
+    <form role="form" th:action="@{'/board/' + ${updateRequest.id}}" th:object="${updateRequest}" method="post">
         <input type="hidden" name="_method" value="put"/>
-        <input type="hidden" name="id" th:value="${boardDto.id}"/>
-        <div class="form-group">
-            <label th:for="created_Date">생성 날짜</label>
-            <input type="text" th:field="*{createdDate}" class="form-control" readonly placeholder="생성 날짜는 수정할 수 없습니다.">
-        </div>
+        <input type="hidden" name="id" th:value="${updateRequest.id}"/>
         <div class="form-group">
             <label th:for="title">제목</label>
             <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 작성하세요.">
@@ -32,9 +28,11 @@
         <br/>
         <button type="submit" class="btn btn-primary">수정</button>
     </form>
+    <form id="delete-form" th:action="@{'/board/delete/' + ${updateRequest.id}}" method="post">
+        <input type="hidden" name="_method" value="delete"/>
+        <button id="delete-btn">삭제</button>
+    </form>
     <br/>
-    <a th:href="@{/board/new}" th:class="btn-light" th:method="get">글 등록</a>
-    <button type="submit" class="btn btn-primary">수정</button>
     <div th:replace="fragments/footer :: footer" />
 </div> <!-- /container -->
 </body>

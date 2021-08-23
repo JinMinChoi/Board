@@ -22,12 +22,10 @@ public class BoardApplication {
 
     @Bean
     public CommandLineRunner runner(BoardRepository boardRepository) throws Exception {
-        return (args) -> {
-            IntStream.rangeClosed(1, 4).forEach(index -> boardRepository.save(init(index)));
-        };
+        return (args) -> IntStream.rangeClosed(1, 4).forEach(index -> boardRepository.save(init(index)));
     }
 
-    private static Board init(int index){
+    private Board init(int index){
         BoardDto boardDto = BoardDto.builder()
                 .title("게시글" + index)
                 .writer("작성자" + index)

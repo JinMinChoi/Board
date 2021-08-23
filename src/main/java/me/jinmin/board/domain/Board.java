@@ -31,7 +31,6 @@ public class Board extends BaseTimeEntity {
     @Column(name = "view_cnt")
     private int viewCnt;
 
-
     @Builder
     public Board(Long id, String title, String writer, String content, int viewCnt,
                  LocalDateTime createdDate, LocalDateTime updatedDate) {

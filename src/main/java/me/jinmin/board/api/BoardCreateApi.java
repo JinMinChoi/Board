@@ -18,12 +18,12 @@ public class BoardCreateApi {
 
     @GetMapping("/write")
     public String writeBoardForm(Model model) {
-        model.addAttribute("boardDto", new BoardCreateRequest());
+        model.addAttribute("createRequest", new BoardCreateRequest());
         return "board/write";
     }
 
     @PostMapping("/write")
-    public String writeBoard(@ModelAttribute("boardDto") BoardCreateRequest boardCreateRequest) {
+    public String writeBoard(@ModelAttribute("createRequest") BoardCreateRequest boardCreateRequest) {
         boardSaveService.save(boardCreateRequest);
         return "redirect:/board/list";
     }

@@ -1,5 +1,6 @@
 package me.jinmin.board.api.dto;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import me.jinmin.board.domain.Board;
@@ -17,6 +18,18 @@ public class BoardDto {
     private int viewCnt;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
+
+    @Builder
+    public BoardDto(Long id, String title, String writer, String content,
+                    int viewCnt, LocalDateTime createdDate, LocalDateTime updatedDate) {
+        this.id = id;
+        this.title = title;
+        this.writer = writer;
+        this.content = content;
+        this.viewCnt = viewCnt;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
+    }
 
     public BoardDto(Board board) {
         this.id = board.getId();
