@@ -1,13 +1,12 @@
 package me.jinmin.board.api.dto;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import me.jinmin.board.domain.Board;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class BoardDto {
 

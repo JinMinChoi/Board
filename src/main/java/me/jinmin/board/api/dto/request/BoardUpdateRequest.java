@@ -1,10 +1,12 @@
 package me.jinmin.board.api.dto.request;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import me.jinmin.board.domain.Board;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class BoardUpdateRequest {
     private Long id;

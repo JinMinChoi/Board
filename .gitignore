@@ -36,8 +36,8 @@ out/
 ### VS Code ###
 .vscode/
 
-#### css, js ###
-#/src/main/resources/static
-#
-#### yml ###
-#/src/main/resources/*.yml
+### css, js ###
+/src/main/resources/static
+
+### yml ###
+/src/main/resources/*.yml
