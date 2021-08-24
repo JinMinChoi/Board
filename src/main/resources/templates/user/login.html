@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<style>
+    .fieldError {
+        border-color: #bd2130;
+    }
+</style>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <form th:action="@{'/api/v1/user/login/'}" th:object="loginRequeset" method="post">
+        E-mail : <input type="text" name="email" th:value="${loginRequest.email}"> <br>
+        Password : <input type="text" name="password" th:value="${loginRequest.password}"> <br>
+        <input type="submit" value="회원가입">
+    </form>
+    <br/>
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+</html>

@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    <form role="form" th:action="@{'/board/write'}" th:object="${createRequest}" method="post">
+    <form role="form" th:action="@{'/api/v1/board/write'}" th:object="${createRequest}" method="post">
         <div class="form-group">
             <label th:for="title">제목</label>
             <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 작성하세요.">

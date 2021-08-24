@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-public class SignInRequest {
+public class LogInRequest {
 
     @Email(message = "올바른 이메일 형식이 아닙니다.")
     private String email;

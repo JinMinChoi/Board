@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    <form role="form" th:action="@{'/board/' + ${updateRequest.id}}" th:object="${updateRequest}" method="post">
+    <form role="form" th:action="@{'/api/v1/board/' + ${updateRequest.id}}" th:object="${updateRequest}" method="post">
         <input type="hidden" name="_method" value="put"/>
         <input type="hidden" name="id" th:value="${updateRequest.id}"/>
         <div class="form-group">

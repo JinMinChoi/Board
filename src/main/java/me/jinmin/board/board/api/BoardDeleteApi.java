@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("/api/v1/board")
 @RequiredArgsConstructor
 public class BoardDeleteApi {
 

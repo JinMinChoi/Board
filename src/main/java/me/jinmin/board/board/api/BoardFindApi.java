@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/board")
+@RequestMapping("/api/v1/board")
 @Controller
 public class BoardFindApi {
 

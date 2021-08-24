@@ -1,9 +1,8 @@
 package me.jinmin.board.user.service;
 
 import lombok.RequiredArgsConstructor;
-import me.jinmin.board.user.api.dto.request.SignInRequest;
+import me.jinmin.board.user.api.dto.request.LogInRequest;
 import me.jinmin.board.user.api.dto.request.SignUpRequest;
-import me.jinmin.board.user.api.dto.response.SignInResponse;
 import me.jinmin.board.user.domain.User;
 import me.jinmin.board.user.exception.EmailDuplicateException;
 import me.jinmin.board.user.repository.UserRepository;
@@ -27,10 +26,10 @@ public class UserSignService {
         userRepository.save(user);
     }
 
-    public SignInResponse login(SignInRequest signInRequest) {
-        User user = userFindService.findByEmail(signInRequest.getEmail());
+    public Long login(LogInRequest logInRequest) {
+        User user = userFindService.findByEmail(logInRequest.getEmail());
         checkExistEmail(user.getEmail());
-        return new SignInResponse(user.getId());
+        return user.getId();
     }
 
     private void checkExistEmail(String email) {
