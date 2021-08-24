@@ -1,8 +1,8 @@
 package me.jinmin.board;
 
-import me.jinmin.board.api.dto.BoardDto;
-import me.jinmin.board.domain.Board;
-import me.jinmin.board.repository.BoardRepository;
+import me.jinmin.board.board.api.dto.BoardDto;
+import me.jinmin.board.board.domain.Board;
+import me.jinmin.board.board.repository.BoardRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
