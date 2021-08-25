@@ -28,7 +28,7 @@
         <br/>
         <button type="submit" class="btn btn-primary">수정</button>
     </form>
-    <form id="delete-form" th:action="@{'/board/delete/' + ${updateRequest.id}}" method="post">
+    <form id="delete-form" th:action="@{'/api/v1/board/delete/' + ${updateRequest.id}}" method="post">
         <input type="hidden" name="_method" value="delete"/>
         <button id="delete-btn">삭제</button>
     </form>

@@ -1,4 +1,4 @@
-package me.jinmin.board.board.exception;
+package me.jinmin.board.exception;
 
 public class BoardNotFoundException extends RuntimeException {
     public BoardNotFoundException(String message) {

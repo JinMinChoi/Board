@@ -2,7 +2,7 @@ package me.jinmin.board.user.service;
 
 import lombok.RequiredArgsConstructor;
 import me.jinmin.board.user.domain.User;
-import me.jinmin.board.user.exception.UserNotFoundException;
+import me.jinmin.board.exception.UserNotFoundException;
 import me.jinmin.board.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

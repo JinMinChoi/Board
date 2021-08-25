@@ -6,6 +6,7 @@ import me.jinmin.board.user.api.dto.request.SignUpRequest;
 import me.jinmin.board.user.service.UserSignService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,9 +28,13 @@ public class UserSignApi {
     }
 
     @PostMapping("/signup")
-    public String signUp(@Valid @ModelAttribute("signUpRequest") SignUpRequest signUpRequest) {
+    public String signUp(@Valid @ModelAttribute("signUpRequest") SignUpRequest signUpRequest,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "user/signup";
+        }
         userSignService.signup(signUpRequest);
-        return "redirect:/api/v1/user/login";
+        return "redirect:/api/v1/board/list";
     }
 
     @GetMapping("/login")
@@ -39,8 +44,12 @@ public class UserSignApi {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("loginRequest") LogInRequest logInRequest) {
+    public String login(@Valid @ModelAttribute("loginRequest") LogInRequest logInRequest,
+                        BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "user/login";
+        }
         Long userId = userSignService.login(logInRequest);
-        return "redirect:/api/v1/board/list/" + userId;
+        return "redirect:/api/v1/board/list";
     }
 }

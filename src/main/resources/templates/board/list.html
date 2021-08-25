@@ -4,6 +4,8 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <a th:href="@{/api/v1/user/login}" th:class="btn-light" th:method="get">로그인</a>
+    <a th:href="@{/api/v1/user/signup}" th:class="btn-light" th:method="get">회원가입</a>
     <div>
         <table class="table table-striped">
             <thead>
@@ -31,7 +33,7 @@
         </table>
     </div>
 
-    <a th:href="@{/board/write}" th:class="btn-light" th:method="get">글 등록</a>
+    <a th:href="@{/api/v1/board/write}" th:class="btn-light" th:method="get">글 등록</a>
     <div th:replace="fragments/footer :: footer"/>
 </div> <!-- /container -->
 </body>

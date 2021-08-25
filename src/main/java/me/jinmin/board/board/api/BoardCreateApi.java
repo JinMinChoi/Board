@@ -25,6 +25,6 @@ public class BoardCreateApi {
     @PostMapping("/write")
     public String writeBoard(@ModelAttribute("createRequest") BoardCreateRequest boardCreateRequest) {
         boardSaveService.save(boardCreateRequest);
-        return "redirect:/board/list";
+        return "redirect:/api/v1/board/list";
     }
 }

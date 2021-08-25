@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import me.jinmin.board.user.api.dto.request.LogInRequest;
 import me.jinmin.board.user.api.dto.request.SignUpRequest;
 import me.jinmin.board.user.domain.User;
-import me.jinmin.board.user.exception.EmailDuplicateException;
+import me.jinmin.board.exception.EmailDuplicateException;
 import me.jinmin.board.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

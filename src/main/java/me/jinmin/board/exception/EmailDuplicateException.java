@@ -1,4 +1,4 @@
-package me.jinmin.board.user.exception;
+package me.jinmin.board.exception;
 
 public class EmailDuplicateException extends RuntimeException {
     public EmailDuplicateException(String message) {
