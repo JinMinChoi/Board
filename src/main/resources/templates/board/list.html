@@ -6,6 +6,7 @@
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
     <a th:href="@{/api/v1/user/login}" th:class="btn-light" th:method="get">로그인</a>
     <a th:href="@{/api/v1/user/signup}" th:class="btn-light" th:method="get">회원가입</a>
+    <div th:text="${userEmail}" th:align="right">User Email</div>
     <div>
         <table class="table table-striped">
             <thead>

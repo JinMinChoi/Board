@@ -34,7 +34,7 @@ public class UserSignApi {
             return "user/signup";
         }
         userSignService.signup(signUpRequest);
-        return "redirect:/api/v1/board/list";
+        return "redirect:/api/v1/user/login";
     }
 
     @GetMapping("/login")
@@ -50,6 +50,6 @@ public class UserSignApi {
             return "user/login";
         }
         Long userId = userSignService.login(logInRequest);
-        return "redirect:/api/v1/board/list";
+        return "redirect:/api/v1/board/list/" + userId;
     }
 }

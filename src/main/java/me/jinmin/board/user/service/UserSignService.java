@@ -18,6 +18,7 @@ public class UserSignService {
     private final UserFindService userFindService;
 
     public void signup(SignUpRequest signUpRequest) {
+        checkExistEmail(signUpRequest.getEmail());
         User user = User.builder()
                 .email(signUpRequest.getEmail())
                 .password(signUpRequest.getPassword())
@@ -28,7 +29,6 @@ public class UserSignService {
 
     public Long login(LogInRequest logInRequest) {
         User user = userFindService.findByEmail(logInRequest.getEmail());
-        checkExistEmail(user.getEmail());
         return user.getId();
     }
 
