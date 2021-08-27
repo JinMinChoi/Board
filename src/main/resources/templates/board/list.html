@@ -34,9 +34,16 @@
         </table>
     </div>
     <div>
+        <div th:if="${userId != null}">
         <span th:each="pageNum : ${pageList}" th:inline="text">
-            <a th:href="@{'/api/v1/board/list?page=' + ${pageNum}}">[[${pageNum}]]</a>
+            <a th:href="@{'/api/v1/board/list/' + ${userId} + '?page=' + ${pageNum}}">[[${pageNum}]]</a>
         </span>
+        </div>
+        <div th:unless="${userId != null}">
+        <span th:each="pageNum : ${pageList}" th:inline="text">
+            <a th:href="@{'/api/v1/board/list/?page=' + ${pageNum}}">[[${pageNum}]]</a>
+        </span>
+        </div>
     </div>
     <div th:if = "${userId != null}">
         <a th:href="@{'/api/v1/board/write/' +${userId}}" th:class="btn-light" th:method="get">글 등록</a>

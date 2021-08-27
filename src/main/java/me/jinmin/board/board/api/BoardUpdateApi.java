@@ -30,6 +30,6 @@ public class BoardUpdateApi {
     public String updateBoard(@PathVariable("boardId") Long boardId,
                               @ModelAttribute("updateRequest") BoardUpdateRequest boardUpdateRequest) {
         boardUpdateService.update(boardId, boardUpdateRequest);
-        return "redirect:/board/list";
+        return "redirect:/api/v1/board/list";
     }
 }

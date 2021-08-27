@@ -17,6 +17,6 @@ public class BoardDeleteApi {
     @DeleteMapping("/delete/{boardId}")
     public String deleteBoard(@PathVariable("boardId") Long boardId) {
         boardDeleteService.delete(boardId);
-        return "redirect:/board/list";
+        return "redirect:/api/v1/board/list";
     }
 }
