@@ -34,7 +34,7 @@ public class BoardFindService {
     }
 
     public List<Board> findAllWithPage(int pageNum) {
-        Pageable pageRequest = PageRequest.of(pageNum - 1, BOARD_COUNT_PER_PAGE, Sort.by(Sort.Direction.ASC, "createdDate"));
+        Pageable pageRequest = PageRequest.of(pageNum - 1, BOARD_COUNT_PER_PAGE, Sort.by(Sort.Direction.DESC, "createdDate"));
         Page<Board> allWithPage = boardRepository.findAll(pageRequest);
 
         List<Board> content = allWithPage.getContent();
