@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import me.jinmin.board.board.api.dto.request.BoardCreateRequest;
 import me.jinmin.board.board.domain.Board;
 import me.jinmin.board.board.repository.BoardRepository;
+import me.jinmin.board.user.domain.User;
+import me.jinmin.board.user.repository.UserRepository;
+import me.jinmin.board.user.service.UserFindService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,9 +17,11 @@ import java.time.LocalDateTime;
 public class BoardSaveService {
 
     private final BoardRepository boardRepository;
+    private final UserFindService userFindService;
 
     @Transactional
-    public void save(BoardCreateRequest boardCreateRequest) {
+    public void save(Long userId, BoardCreateRequest boardCreateRequest) {
+        User user = userFindService.findById(userId);
         Board board = Board.builder()
                 .title(boardCreateRequest.getTitle())
                 .writer(boardCreateRequest.getWriter())
@@ -26,5 +31,6 @@ public class BoardSaveService {
                 .updatedDate(LocalDateTime.now())
                 .build();
         boardRepository.save(board);
+        user.writeBoard(board);
     }
 }

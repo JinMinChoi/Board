@@ -23,7 +23,7 @@
             <tr th:each="board : ${boardList}">
                 <td th:text="${board.id}"></td>
                 <td>
-                    <a th:href="@{'/board/'+${board.id}}" th:text="${board.title}" th:method="get"></a>
+                    <a th:href="@{'/api/v1/board/'+${board.id}}" th:text="${board.title}" th:method="get"></a>
                 </td>
                 <td th:text="${board.writer}"></td>
                 <td th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:dd')}"></td>
@@ -33,8 +33,14 @@
             </tbody>
         </table>
     </div>
-
-    <a th:href="@{/api/v1/board/write}" th:class="btn-light" th:method="get">글 등록</a>
+    <div>
+        <span th:each="pageNum : ${pageList}" th:inline="text">
+            <a th:href="@{'/api/v1/board/list?page=' + ${pageNum}}">[[${pageNum}]]</a>
+        </span>
+    </div>
+    <div th:if = "${userId != null}">
+        <a th:href="@{'/api/v1/board/write/' +${userId}}" th:class="btn-light" th:method="get">글 등록</a>
+    </div>
     <div th:replace="fragments/footer :: footer"/>
 </div> <!-- /container -->
 </body>

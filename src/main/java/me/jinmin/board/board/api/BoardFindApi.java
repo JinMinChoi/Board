@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,20 +27,36 @@ public class BoardFindApi {
     private final UserFindService userFindService;
 
     @GetMapping("/list")
-    public String findAll(Model model) {
-        List<Board> all = boardFindService.findAll();
-        List<BoardDto> boardDtoList = toBoardDtoList(all);
-        model.addAttribute("boardList", boardDtoList);
+    public String findAll(Model model,
+                          @RequestParam(value = "page", defaultValue = "1") int pageNum) {
+        List<Board> allWithPage = boardFindService.findAllWithPage(pageNum);
+        List<BoardDto> boardDtoListWithPage = toBoardDtoList(allWithPage);
+        List<Integer> pageList = boardFindService.getPageList(pageNum);
+
+//        List<Board> all = boardFindService.findAll();
+//        List<BoardDto> boardDtoList = toBoardDtoList(all);
+
+        model.addAttribute("boardList", boardDtoListWithPage);
+        model.addAttribute("pageList", pageList);
         return "board/list";
     }
 
     @GetMapping("/list/{userId}")
-    public String findAllIWithUser(Model model, @PathVariable("userId") Long userId) {
+    public String findAllIWithUser(Model model,
+                                   @PathVariable("userId") Long userId,
+                                   @RequestParam(value = "page", defaultValue = "1") int pageNum) {
         User user = userFindService.findById(userId);
-        List<Board> all = boardFindService.findAll();
-        List<BoardDto> boardDtoList = toBoardDtoList(all);
-        model.addAttribute("boardList", boardDtoList);
+//        List<Board> all = boardFindService.findAll();
+//        List<BoardDto> boardDtoList = toBoardDtoList(all);
+
+        List<Board> allWithPage = boardFindService.findAllWithPage(pageNum);
+        List<BoardDto> boardDtoListWithPage = toBoardDtoList(allWithPage);
+        List<Integer> pageList = boardFindService.getPageList(pageNum);
+
+        model.addAttribute("boardList", boardDtoListWithPage);
+        model.addAttribute("pageList", pageList);
         model.addAttribute("userEmail", user.getEmail());
+        model.addAttribute("userId", user.getId());
         return "board/list";
     }
 

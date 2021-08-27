@@ -40,4 +40,9 @@ public class User extends BaseTimeEntity {
         this.password = password;
         this.name = name;
     }
+
+    public void writeBoard(Board board) {
+        this.board = board;
+        board.getUserList().add(this);
+    }
 }
