@@ -33,9 +33,6 @@ public class BoardFindApi {
         List<BoardDto> boardDtoListWithPage = toBoardDtoList(allWithPage);
         List<Integer> pageList = boardFindService.getPageList(pageNum);
 
-//        List<Board> all = boardFindService.findAll();
-//        List<BoardDto> boardDtoList = toBoardDtoList(all);
-
         model.addAttribute("boardList", boardDtoListWithPage);
         model.addAttribute("pageList", pageList);
         return "board/list";
@@ -46,8 +43,6 @@ public class BoardFindApi {
                                    @PathVariable("userId") Long userId,
                                    @RequestParam(value = "page", defaultValue = "1") int pageNum) {
         User user = userFindService.findById(userId);
-//        List<Board> all = boardFindService.findAll();
-//        List<BoardDto> boardDtoList = toBoardDtoList(all);
 
         List<Board> allWithPage = boardFindService.findAllWithPage(pageNum);
         List<BoardDto> boardDtoListWithPage = toBoardDtoList(allWithPage);

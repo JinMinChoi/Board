@@ -20,17 +20,13 @@ import java.util.List;
 public class BoardFindService {
 
     private static final int PAGE_COUNT_PER_BLOCK = 10;
-    private static final int BOARD_COUNT_PER_PAGE = 5;
+    private static final int BOARD_COUNT_PER_PAGE = 10;
 
     private final BoardRepository boardRepository;
 
     public Board findById(Long id) {
         return boardRepository.findById(id)
                 .orElseThrow(() -> new BoardNotFoundException("This board is not exist"));
-    }
-
-    public List<Board> findAll() {
-        return boardRepository.findAll();
     }
 
     public List<Board> findAllWithPage(int pageNum) {
