@@ -64,7 +64,10 @@ public class Board extends BaseTimeEntity {
         this.title = title;
         this.writer = writer;
         this.content = content;
-        this.viewCnt += 1;
         this.updatedDate = LocalDateTime.now();
+    }
+
+    public void addViewCnt() {
+        this.viewCnt += 1;
     }
 }

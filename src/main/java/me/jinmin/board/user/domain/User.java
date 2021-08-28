@@ -30,6 +30,10 @@ public class User extends BaseTimeEntity {
     @Column(name = "name")
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_role")
+    private Role role;
+
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "board_id")
     private Board board;

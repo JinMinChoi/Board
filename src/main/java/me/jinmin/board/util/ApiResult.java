@@ -1,4 +1,4 @@
-package me.jinmin.board.board.api.util;
+package me.jinmin.board.util;
 
 import lombok.Getter;
 import lombok.ToString;

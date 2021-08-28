@@ -20,5 +20,6 @@ public class BoardUpdateService {
                 boardUpdateRequest.getWriter(),
                 boardUpdateRequest.getContent()
         );
+        board.addViewCnt();
     }
 }
