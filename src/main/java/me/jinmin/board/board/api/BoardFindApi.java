@@ -29,8 +29,7 @@ public class BoardFindApi {
     @GetMapping("/list")
     public String findAll(Model model,
                           @RequestParam(value = "page", defaultValue = "1") int pageNum) {
-        List<Board> allWithPage = boardFindService.findAllWithPage(pageNum);
-        List<BoardDto> boardDtoListWithPage = toBoardDtoList(allWithPage);
+        List<BoardDto> boardDtoListWithPage = toBoardDtoList(boardFindService.findAllWithPage(pageNum));
         List<Integer> pageList = boardFindService.getPageList(pageNum);
 
         model.addAttribute("boardList", boardDtoListWithPage);
@@ -44,8 +43,7 @@ public class BoardFindApi {
                                    @RequestParam(value = "page", defaultValue = "1") int pageNum) {
         User user = userFindService.findById(userId);
 
-        List<Board> allWithPage = boardFindService.findAllWithPage(pageNum);
-        List<BoardDto> boardDtoListWithPage = toBoardDtoList(allWithPage);
+        List<BoardDto> boardDtoListWithPage = toBoardDtoList(boardFindService.findAllWithPage(pageNum));
         List<Integer> pageList = boardFindService.getPageList(pageNum);
 
         model.addAttribute("boardList", boardDtoListWithPage);

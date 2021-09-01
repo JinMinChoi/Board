@@ -12,6 +12,7 @@
     <form role="form" th:action="@{'/api/v1/board/' + ${updateRequest.id}}" th:object="${updateRequest}" method="post">
         <input type="hidden" name="_method" value="put"/>
         <input type="hidden" name="id" th:value="${updateRequest.id}"/>
+        <input type="hidden" name="userId" th:value="${userId}"/>
         <div class="form-group">
             <label th:for="title">제목</label>
             <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 작성하세요.">
@@ -30,6 +31,7 @@
     </form>
     <form id="delete-form" th:action="@{'/api/v1/board/delete/' + ${updateRequest.id}}" method="post">
         <input type="hidden" name="_method" value="delete"/>
+        <input type="hidden" name="userId" th:value="${userId}"/>
         <button id="delete-btn">삭제</button>
     </form>
     <br/>

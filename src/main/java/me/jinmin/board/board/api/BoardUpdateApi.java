@@ -19,17 +19,21 @@ public class BoardUpdateApi {
     private final BoardFindService boardFindService;
     private final BoardUpdateService boardUpdateService;
 
-    @GetMapping("{boardId}")
-    public String updateBoardGet(@PathVariable("boardId") Long boardId, Model model) {
+    @GetMapping("{boardId}/{userId}")
+    public String updateBoardGet(@PathVariable("boardId") Long boardId,
+                                 @PathVariable("userId") Long userId,
+                                 Model model) {
         Board board = boardFindService.findById(boardId);
         model.addAttribute("updateRequest", new BoardUpdateRequest(board.getId(), board));
+        model.addAttribute("userId", userId);
         return "board/detail";
     }
 
     @PutMapping("{boardId}")
     public String updateBoard(@PathVariable("boardId") Long boardId,
+                              @ModelAttribute("userId") Long userId,
                               @ModelAttribute("updateRequest") BoardUpdateRequest boardUpdateRequest) {
         boardUpdateService.update(boardId, boardUpdateRequest);
-        return "redirect:/api/v1/board/list";
+        return "redirect:/api/v1/board/list/" + userId;
     }
 }

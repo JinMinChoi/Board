@@ -24,7 +24,7 @@
                 <td th:text="${board.id}"></td>
                 <div th:if="${userId != null}">
                     <td>
-                        <a th:href="@{'/api/v1/board/'+${board.id}}" th:text="${board.title}" th:method="get"></a>
+                        <a th:href="@{'/api/v1/board/'+${board.id} +'/' + ${userId}}" th:text="${board.title}" th:method="get"></a>
                     </td>
                 </div>
                 <div th:unless="${userId != null}">
