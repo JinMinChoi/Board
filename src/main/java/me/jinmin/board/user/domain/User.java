@@ -39,10 +39,11 @@ public class User extends BaseTimeEntity {
     private Board board;
 
     @Builder
-    public User(String email, String password, String name) {
+    public User(String email, String password, String name, Role role) {
         this.email = email;
         this.password = password;
         this.name = name;
+        this.role = role;
     }
 
     public void writeBoard(Board board) {
